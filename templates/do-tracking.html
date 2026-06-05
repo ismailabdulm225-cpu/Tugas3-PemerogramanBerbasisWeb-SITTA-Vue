@@ -1,0 +1,181 @@
+<template id="tpl-tracking">
+    <main class="tracking-modern">
+        <!-- HEADER -->
+        <header class="tracking-header">
+            <div class="header-left">
+                <h1>Tracking Pengiriman</h1>
+            </div>
+
+            <div class="header-right">
+                <button class="btn-add-popup" @click="toggleAddForm">
+                    + Tambah DO
+                </button>
+            </div>
+        </header>
+
+        <!-- SEARCH -->
+        <div class="search-wrapper">
+            <input type="text" v-model="search" placeholder="Cari No DO / NIM ...." @keyup.enter="searchData"
+                @keyup.esc="clearSearch" />
+        </div>
+
+        <!-- INFO HASIL SEARCH -->
+        <div v-if="search" class="search-info">
+            Hasil pencarian: <b>{{ search }}</b>
+            ({{ filteredTracking.length }} data ditemukan)
+        </div>
+
+        <!-- FORM -->
+        <section v-if="showAddForm" class="tracking-form" @keyup.enter="submitForm">
+            <h3>Tambah Delivery Order</h3>
+            <div class="form-group">
+                <label>No DO</label>
+                <input :value="nextDO" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>NIM</label>
+                <input v-model="formData.nim">
+                <p v-if="formErrors.nim">{{ formErrors.nim }}</p>
+            </div>
+
+            <div class="form-group">
+                <label>Nama</label>
+                <input v-model="formData.nama">
+                <p v-if="formErrors.nama">{{ formErrors.nama }}</p>
+            </div>
+
+            <div class="form-group">
+                <label>Ekspedisi</label>
+                <select v-model="formData.ekspedisi">
+                    <option value="">Pilih Ekspedisi</option>
+                    <option v-for="p in pengirimanList" :value="p.kode">
+                        {{ p.kode }} - {{ p.nama }}
+                    </option>
+                </select>
+                <p v-if="formErrors.ekspedisi">{{ formErrors.ekspedisi }}</p>
+            </div>
+
+            <div class="form-group">
+                <label>Paket</label>
+                <select v-model="formData.paket">
+                    <option value="">Pilih Paket</option>
+                    <option v-for="p in paketList" :value="p.kode">
+                        {{ p.kode }} - {{ p.nama }}
+                    </option>
+                </select>
+                <p v-if="formErrors.paket">{{ formErrors.paket }}</p>
+            </div>
+
+            <!-- DETAIL PAKET -->
+            <div v-if="selectedPaket" class="paket-detail">
+                <p><b>Isi Paket:</b></p>
+                <ul>
+                    <li v-for="i in selectedPaket.isi">
+                        {{ i }}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label>Tanggal Kirim</label>
+                <input type="date" v-model="formData.tanggalKirim">
+                <p v-if="formErrors.tanggalKirim">{{ formErrors.tanggalKirim }}</p>
+            </div>
+
+            <div class="form-group">
+                <p><b>Total: Rp {{ totalHarga.toLocaleString('id-ID') }}</b></p>
+            </div>
+
+            <button class="btn-save" @click="submitForm">
+                Simpan DO
+            </button>
+        </section>
+
+        <!-- TABLE -->
+        <section class="tracking-result-modern">
+            <div class="table-wrapper">
+                <table class="tracking-table">
+                    <thead>
+                        <tr>
+                            <th>No DO</th>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>Tanggal Kirim</th>
+                            <th>Paket</th>
+                            <th>Ekspedisi</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr v-for="item in filteredTracking" :key="item.noDO" :class="{ 'row-highlight': search &&
+                            (item.noDO?.toLowerCase().includes(search.toLowerCase()) ||
+                            item.nim?.toLowerCase().includes(search.toLowerCase())) }">
+                            <td>{{ item.noDO }}</td>
+                            <td>{{ item.nim }}</td>
+                            <td>{{ item.nama }}</td>
+                            <td>{{ item.tanggalKirim }}</td>
+                            <td>{{ item.paket }}</td>
+                            <td>{{ getEkspedisi(item.ekspedisi) }}</td>
+                            <td>
+                                <status-badge :status="item.status">
+                                </status-badge>
+                            </td>
+                            <td>Rp {{ Number(item.total).toLocaleString('id-ID') }}</td>
+                            <td>
+                                <button class="btn-detail" @click="openDetail(item)">
+                                    Detail
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- MODAL DETAIL -->
+        <div v-if="showDetailModal && selectedDetail" class="detail-modal-overlay">
+            <div class="detail-modal-card">
+                <div class="detail-modal-header">
+                    <h2>
+                        Detail {{ selectedDetail.noDO }}
+                    </h2>
+
+                    <button class="detail-modal-close" @click="closeDetail">
+                        ✕
+                    </button>
+                </div>
+
+                <!-- TIMELINE -->
+                <div class="timeline">
+                    <div class="timeline-item" v-for="p in selectedDetail.perjalanan" :key="p.waktu">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">
+                                {{ p.waktu }}
+                            </div>
+
+                            <div class="timeline-text">
+                                {{ p.keterangan }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAMBAH PROGRESS -->
+                <div class="progress-form">
+                    <textarea v-model="progressText" placeholder="Tambah progress perjalanan...">
+                    </textarea>
+
+                    <button class="btn-save" @click="addProgress">
+                        Tambah Progress
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</template>

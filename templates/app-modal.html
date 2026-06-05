@@ -1,0 +1,68 @@
+<template id="tpl-app-modal">
+    <section class="modal modal-active">
+        <div class="modal-content">
+            <!-- CLOSE -->
+            <span class="close" @click="$emit('close')">
+                &times;
+            </span>
+
+            <!-- FORGOT PASSWORD -->
+            <div v-if="type === 'forgot'">
+                <h3>Lupa Password</h3>
+                <p>
+                    Silakan hubungi Administrator SITTA / UPBJJ.
+                </p>
+            </div>
+
+            <!-- REGISTER -->
+            <div v-else-if="type === 'register'">
+                <h3>Daftar Akun</h3>
+                <p>
+                    Pendaftaran akun dilakukan melalui UPBJJ masing-masing.
+                </p>
+            </div>
+
+            <!-- ALERT -->
+            <div v-else-if="type === 'alert'">
+                <h3>Peringatan</h3>
+                <p>
+                    {{ message }}
+                </p>
+
+                <button class="btn-save" @click="$emit('close')">
+                    OK
+                </button>
+            </div>
+
+            <!-- SUCCESS -->
+            <div v-else-if="type === 'success'">
+                <h3>Berhasil</h3>
+                <p>
+                    {{ message }}
+                </p>
+
+                <button class="btn-save" @click="$emit('close')">
+                    OK
+                </button>
+            </div>
+
+            <!-- CONFIRM -->
+            <div v-else-if="type === 'confirm'">
+                <h3>Konfirmasi</h3>
+                <p>
+                    {{ message }}
+                </p>
+
+                <div class="modal-action">
+                    <button class="btn-cancel" @click="$emit('close')">
+                        Tidak
+                    </button>
+
+                    <button class="btn-save" @click="$emit('confirm')">
+                        Ya
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

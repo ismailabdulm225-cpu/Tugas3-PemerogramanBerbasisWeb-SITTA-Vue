@@ -1,0 +1,193 @@
+<template id="tpl-dashboard-page">
+    <main class="dashboard-sitta">
+        <!-- NAVBAR -->
+        <nav class="navbar-sitta">
+            <div class="navbar-brand">
+                <img src="assets/img/logo-ut.png" alt="Logo UT" class="logo-navbar">
+                <div class="brand-text">
+                    <h2>SITTA UT</h2>
+                </div>
+            </div>
+
+            <!-- HAMBURGER -->
+            <button class="hamburger-toggle" @click="isMenuOpen = !isMenuOpen" :class="{ 'is-active': isMenuOpen }">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- MENU -->
+            <div class="navbar-menu-container" :class="{ 'show-menu': isMenuOpen }">
+                <div class="nav-left">
+                    <a href="#" @click.prevent="
+                        currentView = 'menu';
+                        isMenuOpen = false
+                        " :class="{ active: currentView === 'menu' }">
+                        Beranda
+                    </a>
+
+                    <a href="#" @click.prevent="
+                        currentView = 'stok';
+                        isMenuOpen = false
+                        " :class="{ active: currentView === 'stok' }">
+                        Informasi Bahan Ajar
+                    </a>
+
+                    <a href="#" @click.prevent="
+                        currentView = 'tracking';
+                        isMenuOpen = false
+                        " :class="{ active: currentView === 'tracking' }">
+                        Tracking Pengiriman
+                    </a>
+
+                    <!-- DROPDOWN -->
+                    <div class="dropdown">
+                        <button class="dropbtn" type="button" @click="isReportOpen = !isReportOpen">
+                            Laporan ▼
+                        </button>
+
+                        <div class="dropdown-content" v-show="isReportOpen">
+                            <a href="#">
+                                Monitoring Progress DO
+                            </a>
+                            <a href="#">
+                                Rekap Bahan Ajar
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="#">
+                        Histori Transaksi
+                    </a>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="nav-right">
+                    <span class="user-greeting">
+                        {{ greeting }}
+                    </span>
+                    <a href="#" class="link-logout" @click.prevent="logout">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- SPACER -->
+        <div class="navbar-spacer"></div>
+
+        <!-- CONTENT -->
+        <div class="dashboard-content-container">
+
+            <!-- BERANDA -->
+            <section v-if="currentView === 'menu'" class="welcome-screen">
+                <div class="welcome-box">
+                    <h1>{{ greeting }}</h1>
+                    <p>
+                        Silakan pilih menu
+                        <strong>Informasi Bahan Ajar</strong>
+                        atau
+                        <strong>Tracking Pengiriman</strong>
+                    </p>
+            </section>
+
+            <!-- STOCK -->
+            <section v-if="currentView === 'stok' && bahanAjar.stokBuku">
+                <stock-table :items="bahanAjar.stokBuku" :kategori-list="kategoriList" :upbjj-list="upbjjList"
+                    @edit="openEdit" @delete="hapusStok" @open-form="openForm">
+                </stock-table>
+            </section>
+
+            <!-- TRACKING -->
+            <section v-if="currentView === 'tracking'">
+                <do-tracking :tracking-list="bahanAjar.tracking">
+                </do-tracking>
+            </section>
+        </div>
+
+        <!--  MODAL FORM TAMBAH BAHAN AJAR -->
+        <div v-if="showFormModal" class="modal-overlay">
+
+            <!-- ❗ HARUS FORM, bukan div -->
+            <form class="modal-form-card" @submit.prevent="saveData">
+
+                <!-- HEADER -->
+                <div class="modal-header">
+                    <h2>
+                        {{ isEdit ? 'Edit Data Bahan Ajar' : 'Tambah Data Bahan Ajar' }}
+                    </h2>
+
+                    <button type="button" class="modal-close" @click="closeForm">
+                        ✕
+                    </button>
+                </div>
+
+                <!-- FORM GRID -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Kode</label>
+                        <input v-model="newItem.kode" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Judul</label>
+                        <input v-model="newItem.judul" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select v-model="newItem.kategori">
+                            <option value="">Pilih</option>
+                            <option v-for="k in kategoriList" :value="k">{{ k }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>UPBJJ</label>
+                        <select v-model="newItem.upbjj">
+                            <option value="">Pilih</option>
+                            <option v-for="u in upbjjList" :value="u">{{ u }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lokasi Rak</label>
+                        <input v-model="newItem.lokasiRak" type="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Qty</label>
+                        <input v-model.number="newItem.qty" type="number">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Safety</label>
+                        <input v-model.number="newItem.safety" type="number">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <input v-model.number="newItem.harga" type="number">
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Catatan</label>
+                        <textarea v-model="newItem.catatanHTML"></textarea>
+                    </div>
+                </div>
+
+                <!-- ACTION -->
+                <div class="modal-action">
+                    <button type="button" class="btn-cancel" @click="closeForm">
+                        Batal
+                    </button>
+
+                    <button type="submit" class="btn-save">
+                        Simpan Data
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+</template>

@@ -1,0 +1,2328 @@
+/* GLOBAL & LAYOUT UTAMA */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0d47a1, #1565c0, #f0c94a);
+    background-size: 300% 300%;
+    background-attachment: fixed;
+    animation: bgMove 10s ease infinite;
+}
+
+.template-container {
+    display: none;
+}
+
+@keyframes bgMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* LOGIN PAGE */
+body.login-page {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+body.login-page #app {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.login-modern {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 25px 38px;
+    border-radius: 20px;
+    box-shadow: 0 20px 45px rgb(241, 165, 51);
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 10;
+    animation: fadeSlideInCenter 0.7s ease-out;
+}
+
+@keyframes fadeSlideInCenter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.logo-login {
+    width: 105px;
+    display: block;
+    margin: 0 auto 18px;
+    object-fit: contain;
+}
+
+.login-modern h1 {
+    font-size: 30px;
+    color: #0d47a1;
+    margin-bottom: 28px;
+}
+
+/* Floating Input Groups */
+.input-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background: white;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.input-group input::placeholder {
+    color: #bbb;
+}
+
+.input-group input:focus::placeholder {
+    color: transparent;
+}
+
+.input-group input:focus {
+    border-color: #2d6cdf;
+    box-shadow: 0 0 0 4px rgba(45, 108, 223, 0.12);
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.2s ease;
+    background: white;
+    padding: 0 5px;
+    z-index: 2;
+}
+
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label {
+    top: 0px;
+    font-size: 12px;
+    color: #00509e;
+}
+
+/* Links & Buttons */
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 26px;
+    text-align: left;
+}
+
+.login-links a {
+    text-decoration: none;
+    color: #2d6cdf;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.btn-demo-inline {
+    background: transparent;
+    border: none;
+    color: #2d6cdf;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-demo-inline:hover,
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password a,
+.register-link a {
+    text-decoration: none;
+    color: #2d6cdf;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.forgot-password a:hover,
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f0c94a, #e0b52f);
+    color: #1e2a38;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 16px;
+}
+
+/* Generic Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    text-align: center;
+    animation: fadeSlideIn 0.3s ease;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.template-container {
+    display: none;
+}
+
+/* GREETING */
+#greeting {
+    display: inline-block;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: 0.3s;
+}
+
+/* RESPONSIVE NAVBAR & HAMBURGER SYSTEM */
+.navbar-sitta {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.navbar-spacer {
+    height: 95px;
+    width: 100%;
+}
+
+/* Brand Logo UT */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-navbar {
+    height: 42px;
+    object-fit: contain;
+}
+
+.brand-text h2 {
+    font-size: 16px;
+    color: #0d47a1;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.brand-text p {
+    font-size: 11px;
+    color: #666;
+    margin: 0;
+}
+
+/* Container Pembungkus Menu & Profil */
+.navbar-menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    margin-left: 40px;
+}
+
+/* Navigasi Menu */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.navbar-menu a:hover {
+    color: #1565c0;
+    background: #f0f5ff;
+}
+
+.navbar-menu a.active {
+    color: #ffffff;
+    background: #1565c0;
+    box-shadow: 0 4px 10px rgba(21, 101, 192, 0.25);
+}
+
+/* Profil Kanan & Logout */
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-greeting {
+    font-size: 14px;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.btn-logout-nav {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    background: transparent;
+    color: #e53e3e;
+    border: 1px solid #e53e3e;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-logout-nav:hover {
+    background: #e53e3e;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+}
+
+/* Tombol Hamburger (Default Tersembunyi di Desktop) */
+.hamburger-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 19px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010;
+}
+
+.hamburger-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #0d47a1;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* TAMPILAN WELCOME SCREEN */
+.welcome-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.welcome-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 650px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+}
+
+.welcome-box h1 {
+    color: #0d47a1;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.welcome-box p {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.welcome-illustration {
+    font-size: 50px;
+    margin-top: 25px;
+    letter-spacing: 15px;
+}
+
+/* STRUKTUR NAV-LEFT & NAV-RIGHT (TAMPILAN UTAMA / DESKTOP) */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Styling Link Menu Navbar */
+.nav-left a,
+.link-logout {
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.nav-left a:hover {
+    color: #1565c0;
+    background: #f0f5ff;
+}
+
+/* Penanda Menu yang Sedang Aktif */
+.nav-left a.active {
+    color: #ffffff;
+    background: #1565c0;
+}
+
+/* Tombol Logout Kanan */
+.link-logout {
+    color: #e53e3e;
+    border: 1px solid transparent;
+}
+
+.link-logout:hover {
+    color: #ffffff;
+    background: #e53e3e;
+    box-shadow: 0 4px 10px rgba(229, 62, 62, 0.2);
+}
+
+/* SYSTEM DROPDOWN LAPORAN (TAMPILAN DESKTOP) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tombol Utama Dropdown */
+.dropdown .dropbtn {
+    background: transparent;
+    color: #4a5568;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
+
+.dropdown:hover .dropbtn {
+    color: #1565c0;
+    background: #f0f5ff;
+}
+
+.dropdown .arrow {
+    font-size: 10px;
+    transition: transform 0.25s ease;
+}
+
+/* Kotak Isi Menu Dropdown Desktop (Hover) */
+@media (min-width: 993px) {
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #ffffff;
+        min-width: 260px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        border-radius: 8px;
+        padding: 8px 0;
+        z-index: 1100;
+        border: 1px solid #e2e8f0;
+        margin-top: 5px;
+        animation: dropdownFadeIn 0.2s ease-out;
+    }
+
+    .dropdown-content a {
+        color: #2d3748 !important;
+        padding: 12px 20px;
+        text-decoration: none;
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: left;
+        transition: background-color 0.2s;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f0f5ff;
+        color: #1565c0 !important;
+    }
+
+    /* Tampilkan saat di-hover di komputer/laptop */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .arrow {
+        transform: rotate(180deg);
+    }
+}
+
+/* Animasi Dropdown Muncul */
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MEDIA QUERIES GABUNGAN (UNTUK HP & TABLET) */
+@media (max-width: 768px) {
+    .hamburger-toggle {
+        display: flex;
+    }
+
+    /* Mengubah menu atas menjadi sistem laci lipat ke bawah */
+    .navbar-menu-container {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 250px;
+        height: calc(100vh - 70px);
+        background: #7ccaff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 30px;
+        margin: 0;
+        gap: 20px;
+        transition: all 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+
+    /* Munculkan menu laci jika .show-menu aktif */
+    .navbar-menu-container.show-menu {
+        left: 0;
+    }
+
+    /*  menu kiri dan kanan vertikal ke bawah */
+    .nav-left,
+    .nav-right {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .nav-left a,
+    .link-logout {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .nav-right {
+        border-top: 1px solid #edf2f7;
+        padding-top: 20px;
+        margin-top: 10px;
+    }
+
+    .user-greeting {
+        text-align: center;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #4a5568;
+    }
+
+    /* ACCORDION DROPDOWN DI HP */
+    .dropdown {
+        width: 100%;
+        display: block;
+    }
+
+    .dropdown .dropbtn {
+        width: 100%;
+        justify-content: space-between;
+        padding: 14px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    /* Kotak dropdown tipe lipat */
+    .dropdown-content {
+        position: static !important;
+        width: 100%;
+        background-color: #1565c0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-left: 4px solid #1565c0 !important;
+        padding: 5px 0 !important;
+        margin-top: 5px;
+        border-radius: 0;
+    }
+
+    /* Link item di dalam menu lipat HP */
+    .dropdown-content a {
+        color: #4a5568 !important;
+        padding: 12px 25px !important;
+        font-size: 15px !important;
+        border-bottom: 1px solid #edf2f7;
+    }
+
+    .dropdown-content a:last-child {
+        border-bottom: none;
+    }
+
+    /* Animasi transisi tombol hamburger (X) */
+    .hamburger-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+/* STRUKTUR NAV-LEFT & NAV-RIGHT (GABUNGAN MENU BARU) */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Styling Dasar Link Menu Navbar */
+.nav-left a,
+.link-logout {
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.nav-left a:hover {
+    color: #1565c0;
+    background: #f0f5ff;
+}
+
+/* Penanda Menu yang Sedang Aktif */
+.nav-left a.active {
+    color: #ffffff;
+    background: #1565c0;
+}
+
+/* Tombol Logout Kanan */
+.link-logout {
+    color: #e53e3e;
+    border: 1px solid transparent;
+}
+
+.link-logout:hover {
+    color: #ffffff;
+    background: #e53e3e;
+    box-shadow: 0 4px 10px rgba(229, 62, 62, 0.2);
+}
+
+@media (min-width: 769px) {
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        min-width: 260px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        z-index: 1000;
+        top: 100%;
+        left: 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
+
+/* ==========================================================================
+   SYSTEM DROPDOWN LAPORAN
+    */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tombol Utama Dropdown */
+.dropdown .dropbtn {
+    background: transparent;
+    color: #4a5568;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+}
+
+.dropdown:hover .dropbtn {
+    color: #1565c0;
+    background: #f0f5ff;
+}
+
+.dropdown .arrow {
+    font-size: 10px;
+    transition: transform 0.25s ease;
+}
+
+/* Panah otomatis berputar saat di-hover */
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+/* Kotak Isi Menu Dropdown (Sembunyi secara default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 260px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    padding: 8px 0;
+    z-index: 1100;
+    border: 1px solid #e2e8f0;
+    margin-top: 5px;
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+/* Link di dalam Dropdown */
+.dropdown-content a {
+    color: #2d3748 !important;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 0;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f5ff;
+    color: #1565c0 !important;
+}
+
+/* Tampilkan isi dropdown saat kursor berada di atas menu */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Animasi Dropdown Muncul Halus */
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Buat menu laporan memenuhi lebar layar HP */
+    .dropdown {
+        width: 100%;
+        display: block;
+    }
+
+    .dropbtn {
+        width: 100%;
+        justify-content: space-between;
+        /* Panah ▼ pindah ke pojok kanan */
+        padding: 12px 20px;
+        text-align: left;
+    }
+
+    /* Di HP, kita matikan posisi melayang (absolute) berubah jadi tipe lipat */
+    .dropdown-content {
+        display: none;
+        position: static;
+        background-color: #1a237e;
+        box-shadow: none;
+        width: 100%;
+        padding-left: 15px;
+    }
+
+    /* Aktifkan menu dropdown jika di-klik lewat bantuan Vue */
+    .dropdown-content.show-submenu {
+        display: block;
+    }
+
+    /* Gaya tulisan sub-menu di dalam HP */
+    .dropdown-content a {
+        color: #ffffff !important;
+        /* Ubah jadi putih agar kontras dengan latar gelap */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 12px 20px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* PENYESUAIAN RESPONSIVE (UNTUK HP) */
+@media (max-width: 768px) {
+    .dropdown {
+        width: 100%;
+        display: block;
+    }
+
+    .dropbtn {
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 20px;
+    }
+
+    /* ubah posisinya jadi statis (dorong ke bawah DI HP) */
+    .dropdown-content {
+        position: static;
+        background-color: rgba(0, 0, 0, 0.05);
+        box-shadow: none;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .dropdown-content a {
+        color: #ffffff !important;
+        padding-left: 35px;
+    }
+}
+
+/* FOOTER (DASHBOARD & LOGIN HALAMAN) */
+.footer {
+    padding: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #555555;
+}
+
+.footer-login {
+    margin-top: 28px;
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+    text-align: center;
+}
+
+/* Mengatur teks nama di dalam kotak login */
+.footer-login p {
+    font-size: 5px;
+    color: #666666;
+    text-transform: capitalize;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* TEXT COPYRIGHT */
+.title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #060606;
+    letter-spacing: 0.5px;
+    margin: 0;
+    transition: 0.3s;
+}
+
+.title:hover {
+    color: #0fffff;
+}
+
+/* Styling Khusus Kebutuhan Form Baru Tugas Akhir */
+.fieldset-sitta {
+    border: 2px dashed #cbd5e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+    background: #fcfcfd;
+}
+
+.fieldset-sitta legend {
+    font-weight: 700;
+    color: #1a237e;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.form-grid-mini {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+
+.form-control-sm {
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.col-span-full {
+    grid-column: 1 / -1;
+}
+
+.btn-submit-sm {
+    grid-column: 1 / -1;
+    background: #2f855a;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-submit-sm:hover {
+    background: #22543d;
+}
+
+/* Panel Filter dan Tombol Reset */
+.filter-panel-box {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.control-grid-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.checkbox-critical-container {
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #c53030;
+}
+
+/* Teks dan Gaya Badge Status */
+.text-muted-judul {
+    color: #718096;
+    font-size: 12px;
+    display: block;
+    margin-top: 3px;
+}
+
+.rak-style {
+    background: #edf2f7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.font-price {
+    font-weight: 600;
+    color: #2b6cb0;
+}
+
+.text-danger-bold {
+    color: #e53e3e;
+    font-weight: bold;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.status-badge.aman {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-badge.menipis {
+    background: #feebc8;
+    color: #744210;
+}
+
+.status-badge.kosong {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+.badge-status-gray {
+    background: #e2e8f0;
+    color: #4a5568;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* MEKANISME TOOLTIP PREVIEW (MOUSE HOVER ON STATUS) */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.tooltip-preview {
+    visibility: hidden;
+    width: 220px;
+    background-color: #2d3748;
+    color: #fff;
+    text-align: left;
+    border-radius: 8px;
+    padding: 10px 12px;
+    position: absolute;
+    z-index: 99;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+/* Membuat segitiga kecil di bawah balon tooltip */
+.tooltip-preview::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2d3748 transparent transparent transparent;
+}
+
+/* Trigger Hover Muncul */
+.tooltip-container:hover .tooltip-preview {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Tombol Aksi */
+.btn-action-group-main {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-edit-icon,
+.btn-delete-icon {
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit-icon:hover {
+    background: #e2e8f0;
+    transform: scale(1.1);
+}
+
+.btn-delete-icon:hover {
+    background: #fed7d7;
+    border-color: #feb2b2;
+    transform: scale(1.1);
+}
+
+/* EDIT ITEM */
+.inline-edit-grid {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    min-width: 600px;
+}
+
+.inline-edit-grid input,
+.inline-edit-grid select {
+    padding: 8px;
+    font-size: 13px;
+    height: 38px;
+    flex: 1;
+    border: 1px solid #dcdfe4;
+    border-radius: 6px;
+}
+
+/* STOCK DASHBOARD */
+.stok-modern {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.stok-header {
+    background: rgba(255, 255, 255, 0.78);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    padding: 28px;
+    border-radius: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(167, 59, 59, 0.08);
+}
+
+.stok-header h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
+    color: #1e2a38;
+}
+
+.stok-header p {
+    margin: 0;
+    color: #000;
+    font-size: 14px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-ut {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* FILTER BOX */
+.filter-box {
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 22px;
+    border-radius: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* FILTER ITEM */
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 220px;
+    flex: 1;
+}
+
+/* LABEL */
+.filter-item label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* INPUT & SELECT */
+.filter-item input,
+.filter-item select {
+    height: 48px;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    padding: 0 14px;
+    background: white;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.filter-item input:focus,
+.filter-item select:focus {
+    border-color: #1565c0;
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.12);
+}
+
+/* CHECKBOX GROUP */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    background: #eef4ff;
+    border: 1px solid #d6e4ff;
+    padding: 12px 14px;
+    border-radius: 12px;
+}
+
+/* ITEM */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e3a5f;
+    cursor: pointer;
+    margin: 0;
+}
+
+/* INPUT */
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #1565c0;
+    cursor: pointer;
+}
+
+/* ACTION */
+.filter-action-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+/* BUTTON */
+.btn-reset,
+.btn-add-popup {
+    height: 48px;
+    min-width: 160px;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* RESET BUTTON */
+.btn-reset {
+    height: 48px;
+    min-width: 90px;
+    padding: 0 16px;
+    background: #edf2f7;
+    color: #2d3748;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-reset:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+}
+
+/* TAMBAH */
+.btn-add-popup {
+    height: 48px;
+    min-width: 210px;
+    padding: 0 20px;
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-add-popup:hover {
+    transform: translateY(-1px);
+}
+
+/* ACTION WRAPPER */
+.action-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* GROUP BUTTON */
+.filter-action-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+/* BUTTON */
+.btn-reset,
+.btn-add-popup {
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* GROUP ACTION */
+.filter-action-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    margin-left: auto;
+}
+
+/* BUTTON TAMBAH */
+.btn-add-popup {
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-add-popup:hover {
+    transform: translateY(-2px);
+}
+
+/* UKURAN TOMBOL */
+.btn-reset,
+.btn-add-popup {
+    height: 48px;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* BUTTON edit&delete */
+.action-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.action-cell .btn-edit,
+.action-cell .btn-delete {
+    width: 50px;
+    padding: 6px 0;
+    border: none;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 550;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.btn-edit {
+    background: #1976d2;
+    color: white;
+}
+
+.btn-delete {
+    background: #d32f2f;
+    color: white;
+}
+
+/* TABLE WRAPPER */
+.stok-table-wrapper {
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 24px;
+    padding: 26px;
+    overflow-x: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* TABLE */
+.stok-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.stok-table th {
+    background: #035cc2;
+    color: white;
+    padding: 18px 16px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.stok-table td {
+    padding: 18px 16px;
+    border-bottom: 1px solid #eef2f6;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+/* hover */
+.stok-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.stok-table tbody tr:hover {
+    background: #e1f6ff;
+}
+
+.number-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.price-cell {
+    text-align: right;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+/* STATUS BADGE */
+.status-aman,
+.status-menipis,
+.status-kosong {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-aman {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-menipis {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.status-kosong {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* BUTTON */
+.action-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.action-cell .btn-edit,
+.action-cell .btn-delete {
+    width: 50px;
+    padding: 6px 0;
+    border: none;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 550;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.btn-edit {
+    background: #1976d2;
+    color: white;
+}
+
+.btn-delete {
+    background: #d32f2f;
+    color: white;
+}
+
+/* STATUS TOOLTIP */
+.status-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.status-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    max-width: 320px;
+    padding: 10px 12px;
+    background: #4386c9;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    z-index: 999;
+    box-shadow: 0 6px 18px rgba(0,0,0,.2);
+}
+
+/* panah tooltip */
+.status-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #2c3e50 transparent transparent transparent;
+}
+
+.status-wrapper:hover .status-tooltip {
+    display: block;
+}
+
+/* MODAL FORM */
+/* OVERLAY */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* MODAL CARD */
+.modal-form-card {
+    width: 95%;
+    max-width: 800px;
+    background: rgb(195, 226, 250);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalFade 0.25s ease;
+}
+
+/* HEADER */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    color: #1e2a38;
+}
+
+/* CLOSE BUTTON */
+.modal-close {
+    border: none;
+    background: #f1f1f1;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    background: #e0e0e0;
+}
+
+/* GRID */
+.form-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+/* FORM GROUP */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e2a38;
+}
+
+/* INPUT */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #a7adb7;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+/* FOCUS */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #1565c0;
+    box-shadow:
+        0 0 0 3px rgba(21, 101, 192, 0.15);
+}
+
+/* TEXTAREA */
+.form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* FULL WIDTH */
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+/* ACTION */
+.modal-action {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* SAVE cancel BUTTON */
+.btn-save,
+.btn-cancel {
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+    min-width: 120px;
+}
+
+.btn-cancel:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: white;
+}
+
+.btn-cancel {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* BUTTONS */
+.btn-save,
+.btn-reset {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-reset {
+    background: #d32f2f;
+    color: #fff;
+}
+
+/* TRACKING PENGIRIMAN */
+/* TABLE */
+.tracking-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+.tracking-table th {
+    background: #035cc2;
+    color: white;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ISI */
+.tracking-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* HOVER */
+.tracking-table tbody tr:hover {
+    background:  #e1f6ff;;
+}
+
+/* BARIS SELANG-SELING */
+.tracking-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+    .tracking-table {
+        min-width: 900px;
+    }
+}
+
+/* HEADER LAYOUT DO*/
+/* LAYOUT UTAMA */
+.tracking-modern {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* HEADER */
+.tracking-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tracking-header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1e2a38;
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* FORM Detail */
+.tracking-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ERROR TEXT */
+.tracking-form p {
+    color: #d32f2f;
+    font-size: 12px;
+    margin: 4px 0 0;
+}
+
+/* RESULT / TABLE WRAPPER */
+.tracking-result-modern {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.tracking-header {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* KIRI */
+.header-left h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e2a38;
+    margin: 0;
+}
+
+/* KANAN BUTTON GROUP */
+.header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* SPACING DETAIL PAKET */
+.paket-detail {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #f8f9fb;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+}
+
+/* JUDUL */
+.paket-title {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #1e2a38;
+}
+
+/* LIST BIAR RAPI */
+.paket-list {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.paket-list li {
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+/* BUTTON DETAIL */
+.btn-detail {
+    background: #1565c0;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-detail:hover {
+    background: #0d47a1;
+    transform: translateY(-1px);
+}
+
+/* STATUS BADGE */
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-proses {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-perjalanan {
+    background: #bedffc;
+    color: #004085;
+}
+
+.status-diterima {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-default {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* MODAL DO */
+/* OVERLAY */
+.detail-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* CARD */
+.detail-modal-card {
+    background: #ffffff;
+    width: 90%;
+    max-width: 650px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-height: 80vh;
+    overflow-y: auto;
+    color: #333;
+}
+
+/* HEADER */
+.detail-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* CLOSE */
+.detail-modal-close {
+    background: #eee;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.detail-modal-close:hover {
+    background: #ddd;
+}
+
+/* TIMELINE TRACKING */
+.timeline {
+    position: relative;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+/* GARIS TIMELINE */
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #0150ab;
+}
+
+/* ITEM */
+.timeline-item {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+/* TITIK */
+.timeline-dot {
+    width: 14px;
+    height: 14px;
+    background: #1565c0;
+    border-radius: 50%;
+    margin-top: 4px;
+    z-index: 1;
+}
+
+/* ISI */
+.timeline-content {
+    background: #ffdeb4;
+    padding: 10px 12px;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid #eee;
+}
+
+/* WAKTU */
+.timeline-time {
+    font-size: 12px;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+/* TEKS */
+.timeline-text {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+
+.progress-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.progress-form textarea {
+    min-height: 90px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    resize: vertical;
+    font-size: 14px;
+}
+
+
+/* TOMBOL LOGOUT MODERN */
+.btn-logout {
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: #dc3545;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.25);
+    transform: translateY(-1px);
+}
+
+.btn-logout:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.15);
+}
+
+.modal-active {
+    display: flex !important;
+}
+
+.search-wrapper {
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+}
+
+.search-info {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #000000;
+}
+
+.row-highlight {
+    background: #a6ddf9;
+    transition: 0.3s;
+}
+
+/* MODAL GLOBAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn .25s ease;
+}
+
+/* CARD */
+.modal-content {
+    width: 90%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+    position: relative;
+    animation: popupScale .25s ease;
+}
+
+/* CLOSE BUTTON */
+.close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    transition: .2s;
+}
+
+.close:hover {
+    background: #f1f5f9;
+    color: #111;
+}
+
+/* TITLE */
+.modal-content h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+/* TEXT */
+.modal-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 24px;
+}
+
+/* BUTTON AREA */
+.modal-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.modal-action button {
+    min-width: 120px;
+}
+
+/* BUTTON */
+.modal-content button {
+    min-width: 110px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+/* BUTTON HOVER */
+.modal-content button:hover {
+    transform: translateY(-2px);
+}
+
+/* SAVE / OK */
+.btn-save {
+    background: linear-gradient(135deg,
+            #1565c0,
+            #0d47a1);
+    color: white;
+}
+
+/* CANCEL */
+.btn-cancel {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* SUCCESS STYLE */
+.modal-success h3 {
+    color: #15803d;
+}
+
+/* ALERT STYLE */
+.modal-alert h3 {
+    color: #dc2626;
+}
+
+/* CONFIRM STYLE */
+.modal-confirm h3 {
+    color: #d97706;
+}
+
+/* ANIMATION */
+@keyframes popupScale {
+    from {
+        transform: scale(.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

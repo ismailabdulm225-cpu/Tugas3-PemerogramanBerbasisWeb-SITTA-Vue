@@ -1,0 +1,52 @@
+<template id="tpl-login-page">
+    <main class="login-modern">
+        <header>
+            <img src="assets/img/logo-ut.png" class="logo-login">
+            <h1>SITTA Universitas Terbuka</h1>
+        </header>
+        <form @submit.prevent="login">
+            <section class="input-group">
+                <input type="email" v-model="email" placeholder=" " required>
+                <label>Email</label>
+            </section>
+
+            <section class="input-group">
+                <input type="password" v-model="password" placeholder=" " required>
+                <label>Password</label>
+            </section>
+
+            <!-- LUPA PASSWORD -->
+            <div class="login-links">
+                <a href="#" @click.prevent="$root.openModal('forgot')">
+                    Lupa password?
+                </a>
+
+                <button type="button" class="btn-demo-inline" @click="
+                    email = 'admin@ut.ac.id';
+                    password = 'admin123'">
+                    Demo Login
+                </button>
+            </div>
+
+            <!-- BUTTON LOGIN -->
+            <button type="submit" class="btn-login">
+                Masuk
+            </button>
+
+            <!-- REGISTER -->
+            <nav class="register-link">
+                <a href="#" @click.prevent="$root.openModal('register')">
+                    Belum punya akun?
+                </a>
+            </nav>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                <p class="title">
+                    &copy; Ismail Abdul Malik
+                </p>
+            </footer>
+        </form>
+
+    </main>
+</template>

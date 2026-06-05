@@ -1,0 +1,150 @@
+<template id="tpl-stock-table">
+    <main class="stok-modern">
+        <!-- HEADER -->
+        <header class="stok-header">
+            <!-- KIRI -->
+            <div class="header-left">
+                <img src="assets/img/logo-ut.png" alt="Logo UT" class="logo-ut">
+                <div>
+                    <h1>Informasi Bahan Ajar</h1>
+                    <p>
+                        Data stok dan informasi bahan ajar mahasiswa
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- FILTER -->
+        <section class="filter-box">
+            <!-- FILTER UPBJJ -->
+            <div class="filter-item">
+                <label for="filterUpbjj">
+                    Filter UPBJJ
+                </label>
+                <select id="filterUpbjj" v-model="filterUpbjj">
+                    <option value="">
+                        Semua UPBJJ
+                    </option>
+                    <option v-for="u in upbjjList" :key="u" :value="u">
+                        {{ u }}
+                    </option>
+                </select>
+            </div>
+
+            <!-- FILTER KATEGORI -->
+            <div class="filter-item">
+                <label for="filterKategori">
+                    Filter Kategori
+                </label>
+                <select id="filterKategori" v-model="filterKategori" :disabled="!filterUpbjj">
+                    <option value="">
+                        Semua Kategori
+                    </option>
+                    <option v-for="k in kategoriList" :key="k" :value="k">
+                        {{ k }}
+                    </option>
+                </select>
+            </div>
+
+            <!-- SORT -->
+            <div class="filter-item">
+                <label for="sortBy">
+                    Urutkan Data
+                </label>
+                <select id="sortBy" v-model="sortBy">
+                    <option value="">
+                        Pilih Sorting
+                    </option>
+                    <option value="judul">
+                        Judul
+                    </option>
+                    <option value="qty">
+                        Jumlah Stok
+                    </option>
+                    <option value="harga">
+                        Harga
+                    </option>
+                </select>
+            </div>
+
+            <!-- CHECKBOX -->
+            <div class="filter-item">
+                <label>
+                    Filter Status
+                </label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" v-model="filterLowStock">
+                        <span>Stok Menipis</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" v-model="filterEmptyStock">
+                        <span>Stok Kosong</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- ACTION -->
+            <div class="filter-item action-wrapper">
+                <div class="filter-action-group">
+                    <button class="btn-reset" @click="resetFilters">
+                        Reset
+                    </button>
+                    <button class="btn-add-popup" @click="$emit('open-form')">
+                        + Tambah Bahan Ajar
+                    </button>
+                </div>
+            </div>
+
+            <!-- TABLE -->
+            <section class="stok-table-wrapper">
+                <table class="stok-table">
+                    <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Judul</th>
+                            <th>Kategori</th>
+                            <th>UPBJJ</th>
+                            <th>Lokasi Rak</th>
+                            <th>Qty</th>
+                            <th>Safety</th>
+                            <th>Harga</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr v-for="(item,index) in filteredItems" :key="index">
+                            <td>{{ item.kode }}</td>
+                            <td>{{ item.judul }}</td>
+                            <td>{{ item.kategori }}</td>
+                            <td>{{ item.upbjj }}</td>
+                            <td>{{ item.lokasiRak }}</td>
+                            <td class="number-cell">{{ item.qty }} buah</td>
+                            <td class="number-cell">{{ item.safety }} buah</td>
+                            <td class="price-cell">
+                                Rp {{ Number(item.harga).toLocaleString('id-ID') }}
+                            </td>
+                            <!-- STATUS -->
+                            <td>
+                                <status-badge :status="getStatus(item)" :catatan="item.catatanHTML">
+                                </status-badge>
+                            </td>
+
+                            <!-- AKSI -->
+                            <td class="action-cell">
+                                <button class="btn-edit" @click="$emit('edit', item)">
+                                    Edit
+                                </button>
+                                <button class="btn-delete" @click="$emit('delete', item)">
+                                    Hapus
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+    </main>
+</template>
