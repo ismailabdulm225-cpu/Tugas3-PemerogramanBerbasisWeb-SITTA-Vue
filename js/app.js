@@ -51,12 +51,14 @@ const app = Vue.createApp({
 
         handleModalConfirm() {
             if (this.modal.type === 'confirm') {
-                const noDO = this.modal.payload
-                this.bahanAjar.tracking =
-                    this.bahanAjar.tracking.filter(x => x.noDO !== noDO)
-
-                // setelah delete → tampilkan success
+        
+                this.bahanAjar.stokBuku.splice(
+                    this.modal.payload,
+                    1
+                )
+        
                 this.modal.show = false
+        
                 this.$nextTick(() => {
                     this.modal = {
                         show: true,
