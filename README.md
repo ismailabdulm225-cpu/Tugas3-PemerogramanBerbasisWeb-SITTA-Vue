@@ -1,20 +1,28 @@
 # Sistem Informasi Tiras dan Transaksi Bahan Ajar (SITTA)
- **Tugas 3 – Implementasi Vue.js**
- **Nama:** Ismail Abdul Malik
- **NIM:** 052217949
- **Mata Kuliah:** Pemrograman Berbasis Web
- **Universitas:** Universitas Terbuka
+
+Tugas 3 – Implementasi Vue.js
+
+Nama : Ismail Abdul Malik
+NIM : 052217949
+Mata Kuliah : Pemrograman Berbasis Web
+Universitas Terbuka
 
 ## Demo Aplikasi
-**Live Demo (GitHub Pages):**
+
+Website:
 https://ismailabdulm225-cpu.github.io/Tugas3-PemerogramanBerbasisWeb-SITTA-Vue/
 
+Repository:
+https://github.com/ismailabdulm225-cpu/Tugas3-PemerogramanBerbasisWeb-SITTA-Vue
+
 ## Deskripsi
-SITTA (Sistem Informasi Tiras dan Transaksi Bahan Ajar) merupakan aplikasi web berbasis Vue.js 3 yang digunakan untuk membantu pengelolaan stok bahan ajar dan monitoring pengiriman bahan ajar di lingkungan Universitas Terbuka.
 
-Aplikasi ini dikembangkan menggunakan pendekatan **Component Based Architecture** sehingga kode program lebih terstruktur, mudah dipelihara, dan mudah dikembangkan. Implementasi aplikasi memanfaatkan berbagai fitur Vue.js seperti component, template, directive, computed property, watcher, event handling, dan form validation.
+Sistem Informasi Tiras dan Transaksi Bahan Ajar (SITTA) merupakan aplikasi web berbasis Vue.js 3 yang dikembangkan untuk membantu pengelolaan stok bahan ajar dan monitoring pengiriman bahan ajar di lingkungan Universitas Terbuka.
 
-## Tujuan Pengembangan
+Aplikasi dibangun menggunakan pendekatan Component Based Architecture dengan memanfaatkan berbagai fitur Vue.js seperti Component, Template, Data Binding, Computed Property, Watcher, Event Handling, Form Validation, Props, dan Event Emit.
+
+## Tujuan
+
 * Mengimplementasikan framework Vue.js versi 3.
 * Mengimplementasikan Vue Component dan Vue Template.
 * Menggunakan directive Vue.js pada aplikasi web.
@@ -22,66 +30,59 @@ Aplikasi ini dikembangkan menggunakan pendekatan **Component Based Architecture*
 * Mengimplementasikan Event Handling dan Form Validation.
 * Membangun aplikasi pengelolaan stok bahan ajar dan tracking pengiriman yang interaktif.
 
-## Fitur Aplikasi
-* Login pengguna
+## Fitur Utama
+
+* Autentikasi pengguna (Login)
 * Dashboard aplikasi
-* Manajemen stok bahan ajar (Create, Read, Update, Delete)
-* Pencarian data bahan ajar
-* Filter data berdasarkan kategori dan UPBJJ
-* Sorting data stok bahan ajar
+* Pengelolaan stok bahan ajar (CRUD)
+* Pencarian, filter, dan sorting data
 * Tracking Delivery Order (DO)
-* Monitoring status pengiriman
-* Timeline proses pengiriman
+* Timeline pengiriman bahan ajar
+* Status badge kondisi stok
 * Notifikasi dan konfirmasi menggunakan modal
-* Tampilan responsif dan interaktif
+* Penyimpanan status login menggunakan Local Storage
 
 ## Teknologi yang Digunakan
+
 * HTML5
 * CSS3
 * JavaScript (ES6)
 * Vue.js 3
+* Fetch API
+* Local Storage
 
 ## Struktur Proyek
+
 ```text
 tugas3-vue-ut
 ├── index.html
 ├── assets/
-│   ├── css/
-│   └── img/
 ├── data/
 ├── js/
-│   ├── app.js
-│   ├── load-template.js
-│   ├── services/
-│   └── components/
+│   ├── components/
+│   └── services/
 └── templates/
 ```
 
-## Cara Menjalankan Aplikasi
-1. Clone atau download repository ini.
-2. Buka folder proyek menggunakan Visual Studio Code.
-3. Pastikan ekstensi **Live Server** telah terpasang.
-4. Klik kanan pada file `index.html`.
-5. Pilih **Open with Live Server**.
-6. Aplikasi akan berjalan pada browser.
+## Cara Menjalankan
 
-## Implementasi Konsep Vue.js
-Aplikasi ini menerapkan berbagai konsep Vue.js, antara lain:
+1. Clone atau download repository.
+2. Buka proyek menggunakan Visual Studio Code.
+3. Jalankan file `index.html` menggunakan Live Server.
+4. Aplikasi siap digunakan melalui browser.
+
+## Konsep Vue.js yang Diimplementasikan
+
 * Component Based Architecture
-* Vue Components
-* Vue Templates
-* Props
-* Data Binding
-* Event Handling
+* Props dan Event Emit
 * Computed Property
 * Watcher
-* Conditional Rendering (`v-if`)
-* List Rendering (`v-for`)
+* Directive Vue.js (v-model, v-if, v-show, v-for, v-bind, v-on)
+* Conditional Rendering
+* Dynamic Class Binding
 * Form Validation
-* Reusable Components
+* Reusable Component
 
-## Hasil Pengembangan
-Aplikasi berhasil mengintegrasikan fitur pengelolaan stok bahan ajar dan monitoring pengiriman dalam satu sistem berbasis web yang interaktif. Dengan memanfaatkan Vue.js 3, aplikasi menjadi lebih modular, mudah dipelihara, dan memberikan pengalaman pengguna yang lebih baik dibandingkan aplikasi web statis.
+## Kesimpulan
 
-## Repository
-Repository ini dibuat sebagai pemenuhan **Tugas 3 Mata Kuliah Pemrograman Berbasis Web** pada Program Studi Universitas Terbuka.
+Aplikasi SITTA berhasil dikembangkan menggunakan Vue.js 3 dengan pendekatan Component Based Architecture. Aplikasi mampu mengelola data bahan ajar dan monitoring pengiriman secara interaktif serta mengimplementasikan berbagai fitur utama Vue.js sesuai tujuan praktikum.
