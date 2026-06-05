@@ -100,15 +100,16 @@ window.app.component('dashboard-page', {
                 this.$root.openModal('success', 'Data berhasil ditambahkan')
             }
             this.closeForm()
-        },
-        hapusStok(item) {
-            this.$root.openModal(
-                'confirm',
-                'Yakin ingin hapus data ini?',
-                item
-            )
-        }
-
+            },
+            hapusStok(item) {
+                const index = this.bahanAjar.stokBuku.indexOf(item)
+            
+                this.$root.openModal(
+                    'confirm',
+                    'Yakin ingin hapus data ini?',
+                    index
+                )
+            }
     }
 
 })
